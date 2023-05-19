@@ -1,0 +1,20 @@
+<app-header [totalProd]="totalProd"></app-header>
+<h3 class="mt-[70px] text-xl pl-2 font-semibold">All Products</h3>
+<div class="pl-2 mt-[30px] flex">
+    <div class="px-2">Get in category</div>
+    <select class="border"  [(ngModel)]="model" (change)="handleSelect()">
+        <option *ngFor="let item of list" [value]="item">{{item}}</option>
+    </select>
+
+    <div class="px-2">Limit results</div>
+    <select class="border"  [(ngModel)]="result" (change)="handleShowLimit()">
+        <option *ngFor="let item of resultList" [value]="item">{{item}}</option>
+    </select>
+</div>
+<div class="grid md:grid-cols-3 md:gap-3 md:grid-rows-2 lg:grid-cols-4 lg:gap-4 lg:grid-rows-2">
+<div *ngFor="let product of productList">
+    <app-card [image]="product.image" [id]="product.id" [title]="product.title" [price]="product.price"></app-card>
+    </div>
+</div>
+
+<app-footer></app-footer>

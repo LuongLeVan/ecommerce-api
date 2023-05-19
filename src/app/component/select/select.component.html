@@ -1,0 +1,9 @@
+<span class="pr-3">{{title}}</span>
+<div *ngFor="let select of selectList">
+    <button
+      [ngClass]="value === select ? 'border-orange-500' : '' " 
+     (click)="handleClick(select, $event)" class="relative p-3 flex mx-2 border-2 rounded-md border-grey-400 w-20 hover:border-blue-400" aria-disabled="false">
+      {{select}}
+      <span *ngIf="value === select" class="fa fa-check text-white bg-orange-500 absolute right-0 bottom-0" ></span>
+    </button>
+  </div>

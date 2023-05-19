@@ -1,0 +1,14 @@
+<div class="fixed w-full h-full top-0 left-0 right-0 bottom-0 z-50" >
+  <div
+    class="absolute z-[999] bg-white rounded-md text-black w-[300px] h-[300px] top-[20%] left-[20%]"
+  >
+    <div class="p-3">
+      <h3 class="text-center text-base font-semibold">Confirm Your Order</h3>
+      <div>Name: {{name}} {{lastName}}</div>
+      <div>Phone: {{phone}}</div>
+      <div>Email: {{email}}</div>
+      <div>Address: {{address}}</div>
+    </div>
+    <div class="px-3"><button class="p-3 rounded-md bg-blue-950 text-white hover:opacity-70 w-full" (click)="onClose()">Confirm</button></div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<app-header></app-header>
+<h3  class="text-center mt-20 uppercase text-lg font-semibold">Update Product</h3>
+<form class="p-4 mt-4 boder rounded-md border-gray-400" #Form="ngForm" (ngSubmit)="onSubmit(Form)">
+    <div class="w-full">
+        <input class="p-3 w-[45%] mr-3 outline-blue-400 rounded-md border border-blue-400" type="text" required [(ngModel)]="name" name="title" id="title" placeholder="Product Name">
+        <select [(ngModel)]="category"  class="p-3 w-[45%] outline-blue-400 rounded-md border border-blue-400" required id="category" name="category">
+            <option *ngFor="let item of categoryList" [value]="item">{{item}}</option>
+        </select>
+    </div>
+    <input type="text" class="p-3 mt-3 w-[92%] outline-blue-400 rounded-md border border-blue-400" [(ngModel)]="description" required name="description" id="description" placeholder="Description">
+    <input type="file" class="p-3 mt-3 w-[92%] outline-blue-400 rounded-md border border-blue-400" required ngModel (change)="handleChooseImage($event)" name="file" id="file" >
+    <input type="text" class="p-3 mt-3 w-[92%] outline-blue-400 rounded-md border border-blue-400" [(ngModel)]="price" required name="price" id="price" placeholder="Price">
+
+    <button class="p-4 rounded-md bg-blue-400 text-white mt-3 w-[92%] hover:opacity-70">Update Product</button>
+</form>
+<app-footer></app-footer>

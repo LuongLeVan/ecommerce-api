@@ -1,0 +1,64 @@
+<app-header [totalProd]="totalProd"></app-header>
+<div class="p-4 bg-blue-950 text-white mt-20">
+    <div class="text-base font-semibold">${{total}}</div>
+    <div>For the purchase of</div>             
+            <div *ngFor="let item of itemList">
+                <div class="flex justify-around p-4">
+                    <div>
+                        <img [src]="item.image" class="w-12 h-12" alt="">
+                    </div>
+                    <div>
+                        <h3>{{item.title.slice(0,20) + '...' }}</h3>
+                        <h3>Price: ${{item.price}}</h3>
+                        <h3>Quantity: {{item.quantity}}</h3>
+                        <h3>Must pay: ${{item.total}}</h3>
+                        <h3 *ngIf="!item.size.includes('string')">Size: {{item.size}}</h3>
+                        <h3 *ngIf="!item.color.includes('string')">Color: {{item.color}}</h3>
+                        <h3>{{item.date | date:'short'}}</h3>
+                    </div>
+                    <div>
+                        <span (click)="handleDelete(item.title)">
+                            <i class="fa fa-trash"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+           
+            
+</div>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="w-full p-3 flex">
+        <div class="w-[50%]">
+            <input placeholder="first Name" class="p-3 outline-none border border-blue-400 rounded-md" ngModel type="text" id="firstName" required name="firstName" #fN="ngModel">
+            <div><span class="text-red-600" *ngIf="fN.invalid && fN.touched">Please fill out the input value</span></div>
+        </div>
+        <div class="w-[50%] ml-4">
+            <input placeholder="last Name" class="p-3 outline-none border border-blue-400 rounded-md" type="text" id="lastName" ngModel required name="lastName" #lN="ngModel">
+            <div><span class="text-red-600" *ngIf="lN.invalid && lN.touched">Please fill out the input value</span></div>
+
+        </div>
+    </div>
+    <div class="px-3">
+        <input type="email" id="email" name="email" ngModel placeholder="Email" class="w-full p-3 outline-none border border-blue-400 rounded-md" required #em="ngModel">
+        <div><span class="text-red-600" *ngIf="em.invalid && em.touched">Email is required</span></div>
+    </div>
+    <div class="p-3">
+        <input type="tel" placeholder="Phone Number" id="phone" name="phone" ngModel class="w-full p-3 outline-none border border-blue-400 rounded-md" required #phoneNumber="ngModel">
+        <div><span class="text-red-600" *ngIf="phoneNumber.invalid && phoneNumber.touched">Phone number is required</span></div>
+    </div>
+    <div class="px-3">
+        <input type="text" placeholder="Address" id="address" name="address" ngModel class="w-full p-3 outline-none border border-blue-400 rounded-md" required #add="ngModel">
+        <div><span class="text-red-600" *ngIf="add.invalid && add.touched">Address is required</span></div>
+    </div>
+
+    <div class="px-3">
+        <button class="p-3 mt-3  w-full text-white bg-blue-950 rounded-md" (click)="handleOrder()">
+            <p class="hover:opacity-70">Order now</p>
+        </button>
+    </div>
+</form>
+<app-modal *ngIf="order" [name]="firstName" [lastName]="lastName" [phone]="phone" [address]="address" [email]="email" (close)="handleClose()"></app-modal>
+<div class="fixed right-0 top-20">
+    <app-alert *ngIf="showToast" ></app-alert>
+</div>
+<app-footer></app-footer>

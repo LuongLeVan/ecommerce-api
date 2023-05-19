@@ -1,0 +1,85 @@
+<app-header [totalProd]="totalProd"></app-header>
+
+<div class="card px-3 mt-40 z-50">
+    <img class="w-[200px] h-[300px] ml-[25%]" [src]="product.image" alt=`${title}`>
+    <h3 class="text-center font-semibold">{{product.title}}</h3>
+    <h3 class="text-center font-semibold mb-4 mt-3">${{product.price}}</h3>
+    <p class="text-center text-sm font-semibold">{{product.description}}</p>
+    <div class="text-center mt-3">
+        <span class="text-yellow-300">
+            <i class="fa fa-star"></i>
+            {{product.rating.rate}}
+        </span>
+
+        <span class="ml-3">
+            Sold out:
+            {{product.rating.count}}
+        </span>
+    </div>
+
+      <div class="mt-4">
+        <app-select *ngIf="sizeList.length > 0" class="flex items-center justify-center" (newValue)="handleChosenSize($event)" [title]="sizeTitle" [selectList]="sizeList"></app-select>
+        <app-select *ngIf="selectList.length > 0" class="flex items-center justify-center my-6" (newValue)="handleChosenColor($event)" [title]="colorTitle" [selectList]="selectList"></app-select>
+        
+        <div class="flex justify-center items-center mr-[16%]">
+          <span>Quantity</span>
+          
+          <div class="flex ml-20 mt-4 items-center gap-1">
+            <button
+              (click)="handleDecreaseQuantity()"
+              type="button"
+              class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+              >
+              &minus;
+            </button>
+            
+            <input
+            type="text"
+            id="Quantity"
+            value="1"
+            disabled
+              [(ngModel)]="quantity"
+              class="h-10 border border-blue-400 w-24 rounded outline-blue-500 text-center dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+            />
+        
+            <button
+              (click)="handleIncreaseQuantity()"
+              type="button"
+              class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+            >
+              &plus;
+            </button>
+          </div>
+         
+       
+        </div>
+
+      </div>
+
+
+
+
+
+
+   
+
+    <div class="flex justify-center mt-4">
+        <div class="mr-[20px] w-[200px] h-[100px]">
+            <button [disabled]="!color || !size"  class=" rounded p-2 ml-[40%] hover:opacity-70 text-white bg-blue-400 mb-[8px]" (click)="handleAdd(product)">
+                Add To Cart
+            </button>
+        </div>
+        <div class="mr-[20px] w-[200px] h-[100px]">
+            <button class="rounded p-2 ml-[40%] hover:opacity-70 text-white bg-blue-400 mb-[8px]" (click)="handleBuyNow(product)">
+                Buy Now
+            </button>
+        </div>
+    </div>
+</div>
+<h3 class="text-center text-lg font-semibold">Other Product</h3>
+<div class="grid md:grid-cols-3 md:gap-3 md:grid-rows-2 lg:grid-cols-4 lg:gap-4 lg:grid-rows-2">
+    <div *ngFor="let product of productList">
+        <app-card [image]="product.image" [id]="product.id" [title]="product.title" [price]="product.price"></app-card>
+    </div>
+</div>
+<app-footer></app-footer>

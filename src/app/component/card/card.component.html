@@ -1,0 +1,8 @@
+<div class="card px-3 mt-4 rounded-md border ">
+    <img class="w-[200px] h-[300px] ml-[25%]" [src]="image" alt=`${title}`>
+    <h3 class="text-center font-semibold">{{title}}</h3>
+    <h3 class="text-center font-semibold mb-4">${{price}}</h3>
+    <button class="rounded p-2 ml-[40%] hover:opacity-70 text-white bg-blue-400 mb-[8px]">
+        <a routerLink="/{{id}}">View Detail</a>
+    </button>
+</div>
